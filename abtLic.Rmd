@@ -1,0 +1,30 @@
+---
+title: Licence
+output: 
+  html_document:
+    toc: false
+    toc_depth: 1
+bibliography: lib.bib
+---
+
+# Manual
+This manual is licensed under Creative Common Attribution 4.0. This means you are allowed to share, distribute and reuse this document, as along as you give appropriate credit to the original document, provide a link to the license and indicate changes that were made. Please visit the [Create Common legal code](http://creativecommons.org/licenses/by/4.0/legalcode) for more information.
+
+# Package
+The `rhr` package is released under [GNU GPLv3 license](http://www.gnu.org/copyleft/gpl.html). This means:
+
+>    rhr is free software: you can redistribute it and/or modify
+>    it under the terms of the GNU General Public License as published by
+>    the Free Software Foundation, either version 3 of the License, or
+>    (at your option) any later version.
+>
+>    rhr is distributed in the hope that it will be useful,
+>    but WITHOUT ANY WARRANTY; without even the implied warranty of
+>    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+>    GNU General Public License for more details.
+>
+>    You should have received a copy of the GNU General Public License
+>    along with rhr.  If not, see <http://www.gnu.org/licenses/>.
+
+
+

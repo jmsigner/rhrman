@@ -1,0 +1,103 @@
+---
+title: Frequently Asked Questions
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+bibliography: lib.bib
+---
+
+# Kernel Density Estimation (KDE)
+## Why is buffer width important?
+The question how to chose the right output grid buffer and resolution and if the choice matters has come up several time. We try to illustrate some of the points with a simulated set of relocations and kernel density estimation (KDE). 
+
+First we simulate a series of relocation with a random walk.
+
+```{r, message = FALSE}
+library(rhr)
+
+set.seed(1984)
+n <- 1000
+
+## simulate dummy data
+path <- data.frame(x = cumsum(rnorm(n)), y = cumsum(rnorm(n)))
+plot(path, type = "l", asp = 1)
+```
+
+Next we will create four different template grids with two different buffer widths and resolutions.
+
+```{r}
+
+b <- list(
+  rhrRasterFromExt(rhrExtFromPoints(path, buff = 10), res = 1), 
+  rhrRasterFromExt(rhrExtFromPoints(path, buff = 200), res = 1), 
+  rhrRasterFromExt(rhrExtFromPoints(path, buff = 10), res = 10), 
+  rhrRasterFromExt(rhrExtFromPoints(path, buff = 200), res = 10)
+)
+
+bbx <- lapply(b, function(x) rgeos::gEnvelope(SpatialPoints(t(bbox(x)))))
+
+plot(bbx[[4]], border = "black", main = "Buffers")
+plot(bbx[[3]], border = "red", add = TRUE)
+points(path)
+axis(1)
+axis(2)
+```
+
+Next we can estimate KDE and plot them.
+
+```{r, results='hide'}
+kdes <- lapply(b, function(x) rhrKDE(path, trast = x))
+par(mfrow = c(2, 2))
+lapply(kdes, function(x) plot(rhrUD(x), legend = FALSE))
+```
+
+Lets have a look at the home-range area:
+
+```{r}
+sapply(kdes, rhrArea)
+```
+
+We would expect all for areas to be equal, but they are not. We see that differences are smaller between the first two elements than the last two elements. If we plot the isopleths that are used to compute the areas it becomes clearer why this maybe the case.
+
+```{r, results = 'hide'}
+par(mfrow = c(2, 2))
+sapply(kdes, plot, legend = FALSE)
+```
+
+Plotting the isopleths from the different scenarios in one plot makes it even clearer.
+
+```{r}
+par(mfrow = c(1, 1))
+plot(rhrIsopleths(kdes[[4]]), lty = 2, border = "red")
+plot(rhrIsopleths(kdes[[1]]), add = TRUE)
+plot(rhrIsopleths(kdes[[2]]), lty = 2, add = TRUE)
+plot(rhrIsopleths(kdes[[3]]), lty = 1, border = "red", add = TRUE)
+legend("topleft", lty = c(1, 2, 1, 2), col = c("black", "black", "red", "red"), 
+       legend=c("Buffer = 10; Resolution = 1", "Buffer = 200; Resolution = 1", 
+                "Buffer = 10; Resolution = 10", "Buffer = 200; Resolution = 10"))
+axis(1)
+axis(2)
+```
+
+What does this mean?
+
+- Larger buffers tend to produce larger estimates of home-range areas.
+- The effect of buffer width is stronger with lower resolution (i.e., larger pixels).
+- Estimates of home-range area are less sensitive to buffer width than to resolution. 
+
+
+```{r, eval = FALSE, include = FALSE}
+## Everything with adehabitat, we get the same results
+library(adehabitatHR)
+p <- SpatialPoints(path)
+k1 <- kernelUD(p, grid = 60, extent = 10 )
+k2 <- kernelUD(p, grid = 300, extent = 10 )
+
+image(k1)
+image(k2)
+
+kernel.area(k1, unout = "m2", standardize = TRUE, percent = 95)
+kernel.area(k2, unout = "m2", standardize = TRUE, percent = 95)
+
+```

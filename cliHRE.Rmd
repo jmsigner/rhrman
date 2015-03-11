@@ -1,0 +1,103 @@
+---
+title: Using the command line
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+bibliography: lib.bib
+---
+
+# Kernel Density Estimation
+
+Most steps that are available from the GUI can also be called from the command line. 
+
+```{r, message=FALSE}
+library(rhr)
+data(datSH)
+str(datSH)
+```
+We see that `x` and `y` coordinates are saved in the second and third column. Next we will perform a KDE.
+
+```{r}
+kd1 <- rhrKDE(datSH[, 2:3])
+```
+
+
+The `kde` functions take three additional arguments: bandwidth, template raster and levels. 
+
+## Bandwidth
+The bandwidth can be provided as a vector of length one or two. Several methods to estimate bandwidth are available.
+
+- `rhrHref`: estimates the reference bandwidth.
+- `rhrHlscv`: estimates the least square cross validation bandwidth.
+- `rhrHpi`: estimates the plug in the equation bandwidth. 
+- `rhrHrefScaled`: estimates a scaled re fence bandwidth (as described in @Kie2013)
+
+The default bandwidth is the reference bandwidth.
+
+```{r}
+## Calculating reference bandwidth:
+(href <- rhrHref(datSH[, 2:3]))
+
+## Or plugin the equation
+(hpi <- rhrHpi(datSH[, 2:3]))
+
+kdehref1 <- rhrKDE(datSH[, 2:3], h = href$h)
+kdehref2 <- rhrKDE(datSH[, 2:3], h = rhrHref(datSH[, 2:3])$h)
+
+## Are they the same
+identical(rhrUD(kdehref1), rhrUD(kdehref2))
+```
+
+## Working with the result
+
+Once we successfully estimated a KDE, there are several things we can do with. The first thing might be to plot it:
+
+```{r}
+plot(kdehref1)
+```
+
+The functions `rhrUD` and `rhrIsopleths` allows to retrieve the UD and isopleths respectively. 
+```{r}
+ud <- rhrUD(kdehref1)
+class(ud)
+```
+The `ud` is a `RasterLayer` from the `raster` package. Similarly we can obtain the the isopleths at a predefined or specific level.
+
+```{r}
+## the default level of 95
+iso1 <- rhrIsopleths(kdehref1)
+plot(iso1)
+class(iso1)
+
+## other levels
+iso2 <- rhrIsopleths(kdehref1, levels = seq(10, 90, 5))
+plot(iso2)
+```
+The `rhrArea` functions returns the home-range area at a given isopleth. 
+
+```{r}
+## default level
+rhrArea(kdehref1)
+
+## other levels
+rhrArea(kdehref1, levels = seq(10, 90, 5))
+```
+
+## Saving results
+
+Isopleths can be saved various GIS formats, e.g., 
+
+```{r, eval = FALSE}
+raster::shapefile(iso1, "myShape.shp")
+
+```
+
+# References
+
+
+
+
+
+
+

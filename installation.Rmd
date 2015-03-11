@@ -1,0 +1,32 @@
+---
+title: Installing `rhr`
+output: 
+  html_document:
+    toc: false
+    toc_depth: 1
+bibliography: lib.bib
+---
+
+# Requirements
+In order to work with the `rhr` package, **R** needs to be installed on your system (the latest version of **R** is recommended, but at minimum version 3.0 is required). **R** can be [downloaded](http://www.r-project.org) for free. In addition to **R** a modern Internet Browser is required. All testing was done on Mozilla Firefox (version > 30), therefore we suggest to use Firefox, which can also be [downloaded](http://www.mozilla.org/) for free.
+
+# Installation of the package
+Currently the package is hosted on git hub and can be installed from there. We have also set up a repository hosting the `rhr` package. At the moment the package is available for Windows and Linux only. We are not able to provide a binary distribution of the `rhr` package for Macintosh, because we have no access to a computer running with Mac OS X. The only way to run the package on a Macintosh at the moment is to compile it from source. When you install the package for the first time, it is very likely that many additional packages are being installed. This is because the `rhr` package depends on several other **R**-packages, which in turn depend on further packages. Luckily **R**'s packaging system usually does a very good job and automatically installs all dependencies, so that we do not have to intervene here manually.
+
+## Installation of `rhr` from github
+To install the package from git hub use the `devtools` package. Simply use:
+```{r, eval = FALSE}
+if (!require(devtools)) {
+  install.packages("devtools")
+}
+devtools::install_github("rhr", "jmsigner")
+
+```
+
+
+## Installation of `rhr` from an alternative repository
+At the moment it is recommended to install the package from an alternative repository. This can be done by copying the following command and pasting it to **R**'s command line.
+```{r, eval = FALSE}
+  install.packages("rhr", repos=c("http://78.47.85.98/R",  
+                                  "http://cran.rstudio.com/"), dep = TRUE)
+```

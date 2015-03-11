@@ -1,0 +1,26 @@
+---
+title: Citation
+output: 
+  html_document:
+    toc: false
+    toc_depth: 1
+bibliography: lib.bib
+---
+If you found the `rhr` package useful for your work we appreciate if you acknowledge the package. We suggest to cite this manual with: 
+
+> Signer, J. and N. Balkenhol, 2014, rhr: a R package for reproducible home range analysis; retrieved from _http://rhr.spamwell.net_
+
+For BibTeX users: 
+
+````
+@Manual{rhr,
+  author  = "J. Signer and N. Balkenhol",
+  title   = "rhr: a R package for reproducible home range analysis",
+  year    = "2014",
+  url     = "http://rhr.spamwell.net"
+}
+````
+
+Please do not cite this manual for publications that are cited in this manual. You should read and refer to the original publications.
+
+

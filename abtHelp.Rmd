@@ -1,0 +1,15 @@
+---
+title: Additional Help
+output: 
+  html_document:
+    toc: false
+    toc_depth: 1
+bibliography: lib.bib
+---
+
+# Mailing list
+There is a [mailing list](https://listserv.gwdg.de/mailman/listinfo/rhr-discussion) for further discussion and questions.
+
+# Found a bug, something is missing?
+Feel free to leave a comment or contact us directly at `jsigner[]gwdg.de`. 
+

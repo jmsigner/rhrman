@@ -1,0 +1,7 @@
+base
+Rcpp
+ggplot2
+sp
+rgdal
+maptools
+rhr

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Using the command line</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.1/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+
+
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+
+h1.title {
+  border-bottom: solid 2px;
+  text-align: center;
+  font-size: 60px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 15px
+
+}
+img[alt="rhrimg"] {
+  max-width:  120px;
+  display: block;
+}
+
+img {
+  box-shadow: 6px 6px 5px #888888;
+  border-radius: 25px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">rhr</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="installation.html">Installation</a></li>
+        <li class="dropdown">
+          <a href="formats" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GUI<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li class="dropdown-header">Getting Started</li>
+             <li><a href="guiStart.html">Start GUI</a></li>
+             <li><a href="guiReadData.html">Reading Data</a></li>
+             <li><a href="guiMap.html">Mapping Data</a></li>
+             <li><a href="guiSelect.html">Subsetting Data</a></li>
+             <li class="divider"></li>
+             <li class="dropdown-header">Configure</li>
+             <li><a href="guiOutput.html">Output</a></li>
+             <li><a href="guiSettings.html">Settings</a></li>
+             <li><a href="guiHR.html">Home range estimators</a></li>
+             <li class="divider"></li>
+             <li class="dropdown-header">Results</li>
+             <li><a href="guiRes.html">Working with the result</a></li>
+             <li><a href="guiRep.html">Report</a></li>
+          </ul>
+        </li>
+         <li class="dropdown">
+          <a href="developer" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Command line<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="cliBasic.html">Introduction</a></li>
+             <li class="divider"></li>
+             <li><a href="cliHRE.html">Home-range estimation</a></li>
+             <li class="divider"></li>
+             <li><a href="cliMore">More</a></li>
+          </ul>
+        </li>
+         <li class="dropdown">
+          <a href="developer" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+             <li><a href="abtHelp.html">Help</a></li>
+             <li><a href="abtCitation.html">Citation</a></li>
+             <li><a href="abtLic.html">Licence</a></li>
+             <li><a href="abtCase.html">Case Studies</a></li>
+          </ul>
+        </li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+<h1 class="title">Using the command line</h1>
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#kernel-density-estimation">Kernel Density Estimation</a><ul>
+<li><a href="#bandwidth">Bandwidth</a></li>
+<li><a href="#working-with-the-result">Working with the result</a></li>
+<li><a href="#saving-results">Saving results</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="kernel-density-estimation" class="section level1">
+<h1>Kernel Density Estimation</h1>
+<p>Most steps that are available from the GUI can also be called from the command line.</p>
+<pre class="r"><code>library(rhr)
+data(datSH)
+str(datSH)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    1500 obs. of  5 variables:
+##  $ collar     : chr  &quot;c5182&quot; &quot;c5182&quot; &quot;c5182&quot; &quot;c5182&quot; ...
+##  $ x_epsg31467: int  3558403 3558548 3558541 3558453 3558566 3557836 3557881 3557150 3557021 3555975 ...
+##  $ y_epsg31467: int  5999400 5999099 5999019 5999026 5999365 5999185 5999139 5999159 5998865 5997615 ...
+##  $ day        : chr  &quot;2009-02-13&quot; &quot;2009-02-13&quot; &quot;2009-02-13&quot; &quot;2009-02-13&quot; ...
+##  $ time       : chr  &quot;00:02:23&quot; &quot;06:02:21&quot; &quot;12:01:51&quot; &quot;18:00:55&quot; ...</code></pre>
+<p>We see that <code>x</code> and <code>y</code> coordinates are saved in the second and third column. Next we will perform a KDE.</p>
+<pre class="r"><code>kd1 &lt;- rhrKDE(datSH[, 2:3])</code></pre>
+<pre><code>## rhrRasterFromExt: using equal nrow and ncol</code></pre>
+<p>The <code>kde</code> functions take three additional arguments: bandwidth, template raster and levels.</p>
+<div id="bandwidth" class="section level2">
+<h2>Bandwidth</h2>
+<p>The bandwidth can be provided as a vector of length one or two. Several methods to estimate bandwidth are available.</p>
+<ul>
+<li><code>rhrHref</code>: estimates the reference bandwidth.</li>
+<li><code>rhrHlscv</code>: estimates the least square cross validation bandwidth.</li>
+<li><code>rhrHpi</code>: estimates the plug in the equation bandwidth.</li>
+<li><code>rhrHrefScaled</code>: estimates a scaled re fence bandwidth (as described in <span class="citation">Kie (2013)</span>)</li>
+</ul>
+<p>The default bandwidth is the reference bandwidth.</p>
+<pre class="r"><code>## Calculating reference bandwidth:
+(href &lt;- rhrHref(datSH[, 2:3]))</code></pre>
+<pre><code>## $h
+## [1] 618.104 618.104
+## 
+## $rescale
+## [1] &quot;none&quot;</code></pre>
+<pre class="r"><code>## Or plugin the equation
+(hpi &lt;- rhrHpi(datSH[, 2:3]))</code></pre>
+<pre><code>## $h
+## [1] 65.04826 74.39719
+## 
+## $rescale
+## [1] &quot;none&quot;
+## 
+## $correct
+## [1] TRUE</code></pre>
+<pre class="r"><code>kdehref1 &lt;- rhrKDE(datSH[, 2:3], h = href$h)</code></pre>
+<pre><code>## rhrRasterFromExt: using equal nrow and ncol</code></pre>
+<pre class="r"><code>kdehref2 &lt;- rhrKDE(datSH[, 2:3], h = rhrHref(datSH[, 2:3])$h)</code></pre>
+<pre><code>## rhrRasterFromExt: using equal nrow and ncol</code></pre>
+<pre class="r"><code>## Are they the same
+identical(rhrUD(kdehref1), rhrUD(kdehref2))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="working-with-the-result" class="section level2">
+<h2>Working with the result</h2>
+<p>Once we successfully estimated a KDE, there are several things we can do with. The first thing might be to plot it:</p>
+<pre class="r"><code>plot(kdehref1)</code></pre>
+<p><img src="cliHRE_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="672" /></p>
+<p>The functions <code>rhrUD</code> and <code>rhrIsopleths</code> allows to retrieve the UD and isopleths respectively.</p>
+<pre class="r"><code>ud &lt;- rhrUD(kdehref1)
+class(ud)</code></pre>
+<pre><code>## [1] &quot;RasterLayer&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;raster&quot;</code></pre>
+<p>The <code>ud</code> is a <code>RasterLayer</code> from the <code>raster</code> package. Similarly we can obtain the the isopleths at a predefined or specific level.</p>
+<pre class="r"><code>## the default level of 95
+iso1 &lt;- rhrIsopleths(kdehref1)
+plot(iso1)</code></pre>
+<p><img src="cliHRE_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /></p>
+<pre class="r"><code>class(iso1)</code></pre>
+<pre><code>## [1] &quot;SpatialPolygonsDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;sp&quot;</code></pre>
+<pre class="r"><code>## other levels
+iso2 &lt;- rhrIsopleths(kdehref1, levels = seq(10, 90, 5))
+plot(iso2)</code></pre>
+<p><img src="cliHRE_files/figure-html/unnamed-chunk-6-2.png" title="" alt="" width="672" /> The <code>rhrArea</code> functions returns the home-range area at a given isopleth.</p>
+<pre class="r"><code>## default level
+rhrArea(kdehref1)</code></pre>
+<pre><code>##   level     area
+## 1    95 38325055</code></pre>
+<pre class="r"><code>## other levels
+rhrArea(kdehref1, levels = seq(10, 90, 5))</code></pre>
+<pre><code>##    level     area
+## 1     10  1401063
+## 2     15  2203714
+## 3     20  3089250
+## 4     25  4019084
+## 5     30  5011304
+## 6     35  6069462
+## 7     40  7215234
+## 8     45  8435629
+## 9     50  9771290
+## 10    55 11211624
+## 11    60 12819124
+## 12    65 14571133
+## 13    70 16664247
+## 14    75 18931113
+## 15    80 21714672
+## 16    85 25249938
+## 17    90 30171443</code></pre>
+</div>
+<div id="saving-results" class="section level2">
+<h2>Saving results</h2>
+<p>Isopleths can be saved various GIS formats, e.g.,</p>
+<pre class="r"><code>raster::shapefile(iso1, &quot;myShape.shp&quot;)</code></pre>
+<div class="references">
+<h1>References</h1>
+<p>Kie, John G. 2013. “A rule-based ad hoc method for selecting a bandwidth in kernel home-range analyses.” <em>Animal Biotelemetry</em> 1 (1): 13. doi:<a href="http://dx.doi.org/10.1186/2050-3385-1-13">10.1186/2050-3385-1-13</a>.</p>
+</div>
+</div>
+</div>
+
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+<script>
+
+// manage active state of menu based on current page
+$(document).ready(function () {
+
+    // active menu
+    href = window.location.pathname
+    href = href.substr(href.lastIndexOf('/') + 1)
+    $('a[href="' + href + '"]').parent().addClass('active');
+
+    // manage active menu header
+    if (href.startsWith('authoring_'))
+      $('a[href="' + 'authoring' + '"]').parent().addClass('active');
+    else if (href.endsWith('_format.html'))
+      $('a[href="' + 'formats' + '"]').parent().addClass('active');
+    else if (href.startsWith('developer_'))
+      $('a[href="' + 'developer' + '"]').parent().addClass('active');
+
+});
+
+</script>
+
+<!-- disqus -->
+
+ <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rhr'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>
