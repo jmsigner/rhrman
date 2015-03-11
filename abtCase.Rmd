@@ -10,4 +10,3 @@ bibliography: lib.bib
 # Content hasn't been written yet
 Feel free to leave a comment if you encoutered problems with this part of the package or have suggestions what to cover here.
 
-to come 
