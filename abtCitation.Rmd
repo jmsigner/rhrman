@@ -8,16 +8,22 @@ bibliography: lib.bib
 ---
 If you found the `rhr` package useful for your work we appreciate if you acknowledge the package. We suggest to cite this manual with: 
 
-> Signer, J. and N. Balkenhol, 2014, rhr: a R package for reproducible home range analysis; retrieved from _http://rhr.spamwell.net_
+> Signer, J. and Balkenhol, N. (2015), Reproducible home ranges (rhr): A new, user-friendly R package for analyses of wildlife telemetry data. Wildlife Society Bulletin. doi: 10.1002/wsb.539
 
 For BibTeX users: 
 
 ````
-@Manual{rhr,
-  author  = "J. Signer and N. Balkenhol",
-  title   = "rhr: a R package for reproducible home range analysis",
-  year    = "2014",
-  url     = "http://rhr.spamwell.net"
+
+@article{Signer2015,
+  doi = {10.1002/wsb.539},
+  url = {http://dx.doi.org/10.1002/wsb.539},
+  year  = {2015},
+  month = {mar},
+  publisher = {Wiley-Blackwell},
+  pages = {n/a--n/a},
+  author = {Johannes Signer and Niko Balkenhol},
+  title = { Reproducible home ranges ( rhr ): A new,  user-friendly R package for analyses of wildlife telemetry data },
+  journal = {Wildl. Soc. Bull.}
 }
 ````
 
