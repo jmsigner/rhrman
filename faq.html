@@ -182,12 +182,24 @@ img {
 
 <div id="TOC">
 <ul>
+<li><a href="#general-options">General Options</a><ul>
+<li><a href="#file-upload-size-exceeded">File upload size exceeded</a></li>
+</ul></li>
 <li><a href="#kernel-density-estimation-kde">Kernel Density Estimation (KDE)</a><ul>
 <li><a href="#why-is-buffer-width-important">Why is buffer width important?</a></li>
 </ul></li>
 </ul>
 </div>
 
+<div id="general-options" class="section level1">
+<h1>General Options</h1>
+<div id="file-upload-size-exceeded" class="section level2">
+<h2>File upload size exceeded</h2>
+<p><code>shiny</code> limits file uploads by default to 5MB per file. This can be changed with the following command:</p>
+<pre class="r"><code>options(shiny.maxRequestSize=30*1024^2)</code></pre>
+<p>Now it would be possible to upload files up to 30MB (see <a href="https://groups.google.com/forum/#!msg/shiny-discuss/rU3vwGMZexQ/zeKhiYXrtEQJ">here</a> for more)</p>
+</div>
+</div>
 <div id="kernel-density-estimation-kde" class="section level1">
 <h1>Kernel Density Estimation (KDE)</h1>
 <div id="why-is-buffer-width-important" class="section level2">
@@ -202,7 +214,7 @@ n &lt;- 1000
 ## simulate dummy data
 path &lt;- data.frame(x = cumsum(rnorm(n)), y = cumsum(rnorm(n)))
 plot(path, type = &quot;l&quot;, asp = 1)</code></pre>
-<p><img src="faq_files/figure-html/unnamed-chunk-1-1.png" title="" alt="" width="672" /></p>
+<p><img src="faq_files/figure-html/unnamed-chunk-2-1.png" title="" alt="" width="672" /></p>
 <p>Next we will create four different template grids with two different buffer widths and resolutions.</p>
 <pre class="r"><code>b &lt;- list(
   rhrRasterFromExt(rhrExtFromPoints(path, buff = 10), res = 1), 
@@ -218,12 +230,12 @@ plot(bbx[[3]], border = &quot;red&quot;, add = TRUE)
 points(path)
 axis(1)
 axis(2)</code></pre>
-<p><img src="faq_files/figure-html/unnamed-chunk-2-1.png" title="" alt="" width="672" /></p>
+<p><img src="faq_files/figure-html/unnamed-chunk-3-1.png" title="" alt="" width="672" /></p>
 <p>Next we can estimate KDE and plot them.</p>
 <pre class="r"><code>kdes &lt;- lapply(b, function(x) rhrKDE(path, trast = x))
 par(mfrow = c(2, 2))
 lapply(kdes, function(x) plot(rhrUD(x), legend = FALSE))</code></pre>
-<p><img src="faq_files/figure-html/unnamed-chunk-3-1.png" title="" alt="" width="672" /></p>
+<p><img src="faq_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="672" /></p>
 <p>Lets have a look at the home-range area:</p>
 <pre class="r"><code>sapply(kdes, rhrArea)</code></pre>
 <pre><code>##       [,1]    [,2]    [,3]     [,4]    
@@ -232,7 +244,7 @@ lapply(kdes, function(x) plot(rhrUD(x), legend = FALSE))</code></pre>
 <p>We would expect all for areas to be equal, but they are not. We see that differences are smaller between the first two elements than the last two elements. If we plot the isopleths that are used to compute the areas it becomes clearer why this maybe the case.</p>
 <pre class="r"><code>par(mfrow = c(2, 2))
 sapply(kdes, plot, legend = FALSE)</code></pre>
-<p><img src="faq_files/figure-html/unnamed-chunk-5-1.png" title="" alt="" width="672" /></p>
+<p><img src="faq_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /></p>
 <p>Plotting the isopleths from the different scenarios in one plot makes it even clearer.</p>
 <pre class="r"><code>par(mfrow = c(1, 1))
 plot(rhrIsopleths(kdes[[4]]), lty = 2, border = &quot;red&quot;)
@@ -244,7 +256,7 @@ legend(&quot;topleft&quot;, lty = c(1, 2, 1, 2), col = c(&quot;black&quot;, &quo
                 &quot;Buffer = 10; Resolution = 10&quot;, &quot;Buffer = 200; Resolution = 10&quot;))
 axis(1)
 axis(2)</code></pre>
-<p><img src="faq_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /></p>
+<p><img src="faq_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="672" /></p>
 <p>What does this mean?</p>
 <ul>
 <li>Larger buffers tend to produce larger estimates of home-range areas.</li>
