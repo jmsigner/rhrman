@@ -6,6 +6,19 @@ output:
     toc_depth: 2
 bibliography: lib.bib
 ---
+# General Options
+## File upload size exceeded
+
+`shiny` limits file uploads by default to 5MB per file. This can be changed with the following command:
+
+```{r, eval = FALSE}
+options(shiny.maxRequestSize=30*1024^2)
+```
+
+Now it would be possible to upload files up to 30MB (see [here](https://groups.google.com/forum/#!msg/shiny-discuss/rU3vwGMZexQ/zeKhiYXrtEQJ) for more)
+
+
+
 
 # Kernel Density Estimation (KDE)
 ## Why is buffer width important?
