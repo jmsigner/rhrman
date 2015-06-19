@@ -28,6 +28,8 @@ setwd("my_analysis")
 or use `getwd()` to find out what your current working directory is. 
 If you tick this option, a new directory will be created in the current working directory an all results are saved there. If you do not tick it, results will be saved in a temporary file.
 
+![setwd](img/gui_wd.png)
+
 # Units
 ##  When is this important?
 If the desired output units are different from the input units. E.g., if the input units are in meters (as it is the case for many projected coordinate systems) and the desired areal output units not $m^2$ but hectares.
