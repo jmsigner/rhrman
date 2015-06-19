@@ -4,7 +4,6 @@ output:
   html_document:
     toc: false
     toc_depth: 1
-bibliography: lib.bib
 ---
 If you found the `rhr` package useful for your work we appreciate if you acknowledge the package. We suggest to cite this manual with: 
 

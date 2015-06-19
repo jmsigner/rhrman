@@ -3,7 +3,6 @@ title: Output grid
 output: 
   html_document:
     toc: true
-bibliography: lib.bib
 ---
 
 # Output grid

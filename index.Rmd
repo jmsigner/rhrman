@@ -4,20 +4,19 @@ output:
   html_document:
     toc: false
     toc_depth: 1
-bibliography: lib.bib
 ---
 
 # What is `rhr`
 `rhr` (reproducible home ranges) is a package extending the statistical programming language **R** providing functionality to explore and analyze data originating from animal telemetry studies. 
 Such data are usually obtained by tracking animals with GPS (Geographic Positioning System) devices or VHF (Very High Frequency) telemetry. 
 Once data are collected home-range analyses are often employed to analyze these data and infer on the space use of animals. 
-The initial idea to develop yet an other package to analyze animal movement data was based on a review paper of home range analyses by @Laver2008. 
+The initial idea to develop yet an other package to analyze animal movement data was based on a review paper of home range analyses by [Laver and Kelly](http://onlinelibrary.wiley.com/doi/10.2193/2005-589/abstract). 
 One of the conclusions of this review was, that home range analyses frequently miss important analytical steps and often do not report all findings and parameter values used during analyses adequately. 
 Our aim is to take up this critique and try to implement the suggestions of @Laver2008 as closely as possible. 
 We are fully aware that there have been several advances in home range analysis since 2008 and we hope to gradually implement further methods to analyze data and account for new conceptual insights.
 
-An important point raised by @Laver2008 was, that many home range studies do not sufficiently report parameter values used during analyses. 
-This fits into a larger discussion hold in science on reproducible research [e.g., @rocchini2012]. 
+An important point raised by [Laver and Kelly](http://onlinelibrary.wiley.com/doi/10.2193/2005-589/abstract) was, that many home range studies do not sufficiently report parameter values used during analyses. 
+This fits into a larger discussion hold in science on reproducible research. 
 We are aware that it is difficult if not impossible to make home range analyses fully reproducible, but we do believe that there is room for improvement from the status *quo*. 
 The first *r* in the package name stands for reproducible. 
 By this we mean, that the package can produces a report with the main findings of all conducted analyses and parameter values used. 
@@ -25,5 +24,4 @@ We hope that users will find this report useful to refer back to the analytical 
 Additionally the `rhr` package provides a GUI through which many analytical steps can be called. 
 The GUI is built in `html` and runs R in the background. This feature is intended to ease the use of home range analyses for users with less command line experience and yet provide access to parts of the analytical functionality available in **R**. 
 
-# References
 

@@ -10,7 +10,7 @@
 
 
 
-<title>Installing rhr</title>
+<title></title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -176,36 +176,498 @@ img {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div id="header">
-<h1 class="title">Installing <code>rhr</code></h1>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<p><meta charset="utf-8"> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <meta name="generator" content="pandoc" /></p>
+<title>
+</title>
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /> <link href="libs/bootstrap-3.3.1/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+
+
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+
+h1.title {
+  border-bottom: solid 2px;
+  text-align: center;
+  font-size: 60px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 15px
+
+}
+img[alt="rhrimg"] {
+  max-width:  120px;
+  display: block;
+}
+
+img {
+  box-shadow: 6px 6px 5px #888888;
+  border-radius: 25px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+
+</style>
+<p><link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/></p>
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+</head>
+<body>
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container">
+<pre><code>&lt;div class=&quot;navbar-header&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;navbar-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbar&quot;&gt;
+    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;a class=&quot;navbar-brand&quot; href=&quot;index.html&quot;&gt;rhr&lt;/a&gt;
+&lt;/div&gt;
+&lt;div id=&quot;navbar&quot; class=&quot;navbar-collapse collapse&quot;&gt;
+  &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;installation.html&quot;&gt;Installation&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;dropdown&quot;&gt;
+      &lt;a href=&quot;formats&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;GUI&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+      &lt;ul class=&quot;dropdown-menu&quot; role=&quot;menu&quot;&gt;
+         &lt;li class=&quot;dropdown-header&quot;&gt;Getting Started&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiStart.html&quot;&gt;Start GUI&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiReadData.html&quot;&gt;Reading Data&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiMap.html&quot;&gt;Mapping Data&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiSelect.html&quot;&gt;Subsetting Data&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+         &lt;li class=&quot;dropdown-header&quot;&gt;Configure&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiOutput.html&quot;&gt;Output&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiSettings.html&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiHR.html&quot;&gt;Home range estimators&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+         &lt;li class=&quot;dropdown-header&quot;&gt;Results&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiRes.html&quot;&gt;Working with the result&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiRep.html&quot;&gt;Report&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+     &lt;li class=&quot;dropdown&quot;&gt;
+      &lt;a href=&quot;developer&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;Command line&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+      &lt;ul class=&quot;dropdown-menu&quot; role=&quot;menu&quot;&gt;
+         &lt;li&gt;&lt;a href=&quot;cliBasic.html&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;cliHRE.html&quot;&gt;Home-range estimation&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;cliMore&quot;&gt;More&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+     &lt;li class=&quot;dropdown&quot;&gt;
+      &lt;a href=&quot;developer&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;About&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+      &lt;ul class=&quot;dropdown-menu&quot; role=&quot;menu&quot;&gt;
+         &lt;li&gt;&lt;a href=&quot;abtHelp.html&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;abtCitation.html&quot;&gt;Citation&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;abtLic.html&quot;&gt;Licence&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;abtCase.html&quot;&gt;Case Studies&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;faq.html&quot;&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;&lt;!--/.nav-collapse --&gt;</code></pre>
 </div>
+<!--/.container -->
+</div>
+<!--/.navbar -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<p>
+<meta charset="utf-8"> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <meta name="generator" content="pandoc" />
+</p>
+<title>
+Installing rhr
+</title>
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" /> <link href="libs/bootstrap-3.3.1/css/cosmo.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
 
 
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h2 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+.section h3 {
+  padding-top: 55px;
+  margin-top: -55px;
+}
+
+h1.title {
+  border-bottom: solid 2px;
+  text-align: center;
+  font-size: 60px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 15px
+
+}
+img[alt="rhrimg"] {
+  max-width:  120px;
+  display: block;
+}
+
+img {
+  box-shadow: 6px 6px 5px #888888;
+  border-radius: 25px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+
+</style>
+<p>
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+</p>
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+</head>
+<body>
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container">
+<pre><code>&lt;div class=&quot;navbar-header&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;navbar-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbar&quot;&gt;
+    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;a class=&quot;navbar-brand&quot; href=&quot;index.html&quot;&gt;rhr&lt;/a&gt;
+&lt;/div&gt;
+&lt;div id=&quot;navbar&quot; class=&quot;navbar-collapse collapse&quot;&gt;
+  &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;installation.html&quot;&gt;Installation&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;dropdown&quot;&gt;
+      &lt;a href=&quot;formats&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;GUI&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+      &lt;ul class=&quot;dropdown-menu&quot; role=&quot;menu&quot;&gt;
+         &lt;li class=&quot;dropdown-header&quot;&gt;Getting Started&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiStart.html&quot;&gt;Start GUI&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiReadData.html&quot;&gt;Reading Data&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiMap.html&quot;&gt;Mapping Data&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiSelect.html&quot;&gt;Subsetting Data&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+         &lt;li class=&quot;dropdown-header&quot;&gt;Configure&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiOutput.html&quot;&gt;Output&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiSettings.html&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiHR.html&quot;&gt;Home range estimators&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+         &lt;li class=&quot;dropdown-header&quot;&gt;Results&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiRes.html&quot;&gt;Working with the result&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;guiRep.html&quot;&gt;Report&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+     &lt;li class=&quot;dropdown&quot;&gt;
+      &lt;a href=&quot;developer&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;Command line&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+      &lt;ul class=&quot;dropdown-menu&quot; role=&quot;menu&quot;&gt;
+         &lt;li&gt;&lt;a href=&quot;cliBasic.html&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;cliHRE.html&quot;&gt;Home-range estimation&lt;/a&gt;&lt;/li&gt;
+         &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;cliMore&quot;&gt;More&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+     &lt;li class=&quot;dropdown&quot;&gt;
+      &lt;a href=&quot;developer&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;About&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;
+      &lt;ul class=&quot;dropdown-menu&quot; role=&quot;menu&quot;&gt;
+         &lt;li&gt;&lt;a href=&quot;abtHelp.html&quot;&gt;Help&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;abtCitation.html&quot;&gt;Citation&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;abtLic.html&quot;&gt;Licence&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href=&quot;abtCase.html&quot;&gt;Case Studies&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;faq.html&quot;&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;&lt;!--/.nav-collapse --&gt;</code></pre>
+</div>
+<!--/.container -->
+</div>
+<!--/.navbar -->
+<div id="header">
+<h1 class="title">
+Installing <code>rhr</code>
+</h1>
+</div>
 <div id="requirements" class="section level1">
-<h1>Requirements</h1>
-<p>In order to work with the <code>rhr</code> package, <strong>R</strong> needs to be installed on your system (the latest version of <strong>R</strong> is recommended, but at minimum version 3.0 is required). <strong>R</strong> can be <a href="http://www.r-project.org">downloaded</a> for free. In addition to <strong>R</strong> a modern Internet Browser is required. All testing was done on Mozilla Firefox (version &gt; 30), therefore we suggest to use Firefox, which can also be <a href="http://www.mozilla.org/">downloaded</a> for free.</p>
+<h1>
+Requirements
+</h1>
+<p>
+In order to work with the <code>rhr</code> package, <strong>R</strong> needs to be installed on your system (the latest version of <strong>R</strong> is recommended, but at minimum version 3.0 is required). <strong>R</strong> can be <a href="http://www.r-project.org">downloaded</a> for free. In addition to <strong>R</strong> a modern Internet Browser is required. All testing was done on Mozilla Firefox (version &gt; 30), therefore we suggest to use Firefox, which can also be <a href="http://www.mozilla.org/">downloaded</a> for free.
+</p>
 </div>
 <div id="installation-of-the-package" class="section level1">
-<h1>Installation of the package</h1>
-<p>Currently the package is hosted on git hub and can be installed from there. We have also set up a repository hosting the <code>rhr</code> package. At the moment the package is available for Windows and Linux only. We are not able to provide a binary distribution of the <code>rhr</code> package for Macintosh, because we have no access to a computer running with Mac OS X. The only way to run the package on a Macintosh at the moment is to compile it from source. When you install the package for the first time, it is very likely that many additional packages are being installed. This is because the <code>rhr</code> package depends on several other <strong>R</strong>-packages, which in turn depend on further packages. Luckily <strong>R</strong>’s packaging system usually does a very good job and automatically installs all dependencies, so that we do not have to intervene here manually.</p>
+<h1>
+Installation of the package
+</h1>
+<p>
+Currently the package is hosted on git hub and can be installed from there. We have also set up a repository hosting the <code>rhr</code> package. At the moment the package is available for Windows and Linux only. We are not able to provide a binary distribution of the <code>rhr</code> package for Macintosh, because we have no access to a computer running with Mac OS X. The only way to run the package on a Macintosh at the moment is to compile it from source. When you install the package for the first time, it is very likely that many additional packages are being installed. This is because the <code>rhr</code> package depends on several other <strong>R</strong>-packages, which in turn depend on further packages. Luckily <strong>R</strong>’s packaging system usually does a very good job and automatically installs all dependencies, so that we do not have to intervene here manually.
+</p>
 <div id="installation-of-rhr-from-github" class="section level2">
-<h2>Installation of <code>rhr</code> from github</h2>
-<p>To install the package from git hub use the <code>devtools</code> package. Simply use:</p>
+<h2>
+Installation of <code>rhr</code> from github
+</h2>
+<p>
+To install the package from git hub use the <code>devtools</code> package. Simply use:
+</p>
 <pre class="r"><code>if (!require(devtools)) {
   install.packages(&quot;devtools&quot;)
 }
 devtools::install_github(&quot;rhr&quot;, &quot;jmsigner&quot;)</code></pre>
 </div>
 <div id="installation-of-rhr-from-an-alternative-repository" class="section level2">
-<h2>Installation of <code>rhr</code> from an alternative repository</h2>
-<p>At the moment it is recommended to install the package from an alternative repository. This can be done by copying the following command and pasting it to <strong>R</strong>’s command line.</p>
+<h2>
+Installation of <code>rhr</code> from an alternative repository
+</h2>
+<p>
+At the moment it is recommended to install the package from an alternative repository. This can be done by copying the following command and pasting it to <strong>R</strong>’s command line.
+</p>
 <pre class="r"><code>  install.packages(&quot;rhr&quot;, repos=c(&quot;http://78.47.85.98/R&quot;,  
                                   &quot;http://cran.rstudio.com/&quot;), dep = TRUE)</code></pre>
-<div class="references">
+</div>
+</div>
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+<script>
+
+// manage active state of menu based on current page
+$(document).ready(function () {
+
+    // active menu
+    href = window.location.pathname
+    href = href.substr(href.lastIndexOf('/') + 1)
+    $('a[href="' + href + '"]').parent().addClass('active');
+
+    // manage active menu header
+    if (href.startsWith('authoring_'))
+      $('a[href="' + 'authoring' + '"]').parent().addClass('active');
+    else if (href.endsWith('_format.html'))
+      $('a[href="' + 'formats' + '"]').parent().addClass('active');
+    else if (href.startsWith('developer_'))
+      $('a[href="' + 'developer' + '"]').parent().addClass('active');
+
+});
+
+</script>
+<!-- disqus -->
+<div id="disqus_thread">
 
 </div>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = &#39;rhr&#39;; // required: replace example with your forum shortname
+
+    /* * * DON&#39;T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement(&#39;script&#39;); dsq.type = &#39;text/javascript&#39;; dsq.async = true;
+        dsq.src = &#39;//&#39; + disqus_shortname + &#39;.disqus.com/embed.js&#39;;
+        (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(dsq);
+    })();
+&lt;/script&gt;
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</code></pre>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60631704-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </div>
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+</body>
+</html>
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+<script>
+
+// manage active state of menu based on current page
+$(document).ready(function () {
+
+    // active menu
+    href = window.location.pathname
+    href = href.substr(href.lastIndexOf('/') + 1)
+    $('a[href="' + href + '"]').parent().addClass('active');
+
+    // manage active menu header
+    if (href.startsWith('authoring_'))
+      $('a[href="' + 'authoring' + '"]').parent().addClass('active');
+    else if (href.endsWith('_format.html'))
+      $('a[href="' + 'formats' + '"]').parent().addClass('active');
+    else if (href.startsWith('developer_'))
+      $('a[href="' + 'developer' + '"]').parent().addClass('active');
+
+});
+
+</script>
+<!-- disqus -->
+<div id="disqus_thread">
+
 </div>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = &#39;rhr&#39;; // required: replace example with your forum shortname
+
+    /* * * DON&#39;T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement(&#39;script&#39;); dsq.type = &#39;text/javascript&#39;; dsq.async = true;
+        dsq.src = &#39;//&#39; + disqus_shortname + &#39;.disqus.com/embed.js&#39;;
+        (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(dsq);
+    })();
+&lt;/script&gt;
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href=&quot;https://disqus.com/?ref_noscript&quot;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</code></pre>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60631704-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</div>
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+</body>
+</html>
 
 
 <!-- some extra javascript for older browsers -->

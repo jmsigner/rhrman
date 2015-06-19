@@ -4,7 +4,6 @@ output:
   html_document:
     toc: true
     toc_depth: 2
-bibliography: lib.bib
 ---
 # General Options
 ## File upload size exceeded
