@@ -92,7 +92,6 @@ raster::shapefile(iso1, "myShape.shp")
 
 ```
 
-# References
 
 
 
