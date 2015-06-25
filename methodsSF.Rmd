@@ -3,9 +3,57 @@ title: Site Fidelity
 output: 
   html_document:
     toc: true
-    toc_depth: 2
+    toc_depth: 1
+    mathjax: https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
 ---
+
+```{r setup, include = FALSE}
+library(rhr)
+library(knitr)
+
+knitr::opts_chunk$set(cache = TRUE)
+
+```
+
 
 # Background 
 
-Implementation of site fidelty is based on suggested methods by [Spencer and Cameron]( http://www.jstor.org/stable/1937590) 1990. 
+Implementation of site fidelity is based on suggested methods by [Spencer et al. 1990](http://www.jstor.org/stable/1937590). As a definition for the presence they use:
+
+> Site fidelity exists, if the observed area an animal uses is smaller than the area used if an indiviudals movement was random ([Munger 1984](http://www.esajournals.org/doi/abs/10.2307/1938315)). 
+
+They then assumed, that if an animal exhibits site fidelity, it posses an home range. To test for the existence of site fidelity, they used three metrics:
+
+- A linearity index (LI)
+- The mean squared distance from the center of activity (MSD)
+
+In `rhr` the linearity index and the mean squared distance from the center of activity are implemented.
+
+# Calculation
+
+The test whether or not animal exhibits site fidelity the LI and MSD metric a compared to random trajectory. Randomly permuting step lengths and connected them with random angles. This is done $n = 100$ times and for each random trajectory LI and MSD are calculated to obtain a distribution of these values. Finally the values for LI and MSD are compared to the distribution LI and MSD for random trajectories.
+
+```{r randomTraj, echo = FALSE}
+data(datSH)
+i1 <- rhr:::rhrBasePRW(datSH[1:500, 2], datSH[1:500, 3])
+
+par(mfrow = c(1, 2))
+plot(datSH[1:500, 2:3], type = "l", asp = 1, xlab = "x", ylab = "y", main = "Actual Path")
+plot(i1, type  ="l", asp = 1, xlab = "x", ylab = "y", main = "Permuted Path")
+par(mfrow = c(1, 1))
+```
+
+
+# Interpretation
+
+`rhr` produces an histogram for LI and MSD and indicates where the critical threshold (red dashed lines) is located (by default using $\alpha = 0.05$) and the observed value (red solid line). 
+
+```{r}
+sf <- rhrSiteFidelity(datSH[1:500, 2:3], n = 500)
+plot(sf)
+
+```
+
+If the solid red line is below the interval indicated by the red dashed lines, one can conclude that site fidelity is present. 
+

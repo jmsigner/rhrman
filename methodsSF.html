@@ -191,12 +191,38 @@ img {
 <div id="TOC">
 <ul>
 <li><a href="#background">Background</a></li>
+<li><a href="#calculation">Calculation</a></li>
+<li><a href="#interpretation">Interpretation</a></li>
 </ul>
 </div>
 
 <div id="background" class="section level1">
 <h1>Background</h1>
-<p>Implementation of site fidelty is based on suggested methods by <a href="http://www.jstor.org/stable/1937590">Spencer and Cameron</a> 1990.</p>
+<p>Implementation of site fidelity is based on suggested methods by <a href="http://www.jstor.org/stable/1937590">Spencer et al. 1990</a>. As a definition for the presence they use:</p>
+<blockquote>
+<p>Site fidelity exists, if the observed area an animal uses is smaller than the area used if an indiviudals movement was random (<a href="http://www.esajournals.org/doi/abs/10.2307/1938315">Munger 1984</a>).</p>
+</blockquote>
+<p>They then assumed, that if an animal exhibits site fidelity, it posses an home range. To test for the existence of site fidelity, they used three metrics:</p>
+<ul>
+<li>A linearity index (LI)</li>
+<li>The mean squared distance from the center of activity (MSD)</li>
+</ul>
+<p>In <code>rhr</code> the linearity index and the mean squared distance from the center of activity are implemented.</p>
+</div>
+<div id="calculation" class="section level1">
+<h1>Calculation</h1>
+<p>The test whether or not animal exhibits site fidelity the LI and MSD metric a compared to random trajectory. Randomly permuting step lengths and connected them with random angles. This is done <span class="math">\(n = 100\)</span> times and for each random trajectory LI and MSD are calculated to obtain a distribution of these values. Finally the values for LI and MSD are compared to the distribution LI and MSD for random trajectories.</p>
+<p><img src="methodsSF_files/figure-html/randomTraj-1.png" title="" alt="" width="672" /></p>
+</div>
+<div id="interpretation" class="section level1">
+<h1>Interpretation</h1>
+<p><code>rhr</code> produces an histogram for LI and MSD and indicates where the critical threshold (red dashed lines) is located (by default using <span class="math">\(\alpha = 0.05\)</span>) and the observed value (red solid line).</p>
+<pre class="r"><code>sf &lt;- rhrSiteFidelity(datSH[1:500, 2:3], n = 500)
+plot(sf)</code></pre>
+<pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
+## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.</code></pre>
+<p><img src="methodsSF_files/figure-html/unnamed-chunk-1-1.png" title="" alt="" width="672" /></p>
+<p>If the solid red line is below the interval indicated by the red dashed lines, one can conclude that site fidelity is present.</p>
 </div>
 
 
@@ -264,6 +290,15 @@ $(document).ready(function () {
 
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 </body>
 </html>
