@@ -1,0 +1,11 @@
+---
+title: Site Fidelity
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+# Background 
+
+Implementation of site fidelty is based on suggested methods by [Spencer and Cameron]( http://www.jstor.org/stable/1937590) 1990. 
