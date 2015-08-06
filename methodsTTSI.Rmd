@@ -1,5 +1,5 @@
 ---
-title: Time To Statistical Independence
+title: Time To Statistical Independence (TTSI)
 output: 
   html_document:
     toc: true
@@ -15,13 +15,31 @@ knitr::opts_chunk$set(cache = TRUE)
 
 ```
 
-
 # Background 
+
+[Swithart and Slade 1985](http://www.esajournals.org/doi/abs/10.2307/1939170) introduced a method to test for the temporal independence of animal relocations. Whether or not independence is prerequisite for home-range estimation has received much attention (e.g., [Fieberg 2007](http://www.esajournals.org/doi/abs/10.1890/06-0930), [deSolla et al](http://onlinelibrary.wiley.com/doi/10.1046/j.1365-2656.1999.00279.x/full)). Newer home-range estimation methods also have the ability to explicitly model temporal autocorrelation (e.g., [Fleming et al 2015](http://www.esajournals.org/doi/10.1890/14-2010.1)). We provide the method proposed by Swithart and Slade (1985) here. **However, we do not give any recommodation to use it, or to subsample data to reach independepence**. 
 
 
 # Calculation
 
+[Swithart and Slade 1985](http://www.esajournals.org/doi/abs/10.2307/1939170) provided a way to determine a critical value for the Schoener statistic. The methods is implemented here, is to test for different time intervals, whether or not the critical value is reached.
 
+
+## GUI
+
+TTSI requires a time stamp for each relocation. In order to use TTSI make sure time stamps are mapped correctly in the mapping data part. Next click on `configure > exploratory analysis > Time to statistical independence`.  Three options can be set here:
+
+1. **Initial time difference**: The first time interval at the beginning in seconds. 
+2. **Sampling regime**: If consecutive, it is assumed that relocations are separated by equal time intervals.
+3. **Number of times above critical value**: How often the test statistic has to be higher than the critical value.
+
+## Command line
+
+From the command line TTSI can be calculated with the function `rhrTTSI()`
 
 # Interpretation
+
+The main results from the TTSI analysis is one plot with two panels. In the upper panel the value of the test statistic is shown and in the lower panel the number of relocation pairs being used. The red dashed line shows the critical value of 2 and the grey line shows the the adjusted critical value. If the test statistic is above the critical for a given number of times (this can be adjusted in the configuration and defaults to three) TTSI is reached. This is indicated by a red circle.
+
+
 
