@@ -1,0 +1,27 @@
+---
+title: Time To Statistical Independence
+output: 
+  html_document:
+    toc: true
+    toc_depth: 1
+    mathjax: https://d3eoax9i5htok0.cloudfront.net/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+---
+
+```{r setup, include = FALSE}
+library(rhr)
+library(knitr)
+
+knitr::opts_chunk$set(cache = TRUE)
+
+```
+
+
+# Background 
+
+
+# Calculation
+
+
+
+# Interpretation
+
