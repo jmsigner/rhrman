@@ -198,7 +198,8 @@ img {
 </ul></li>
 <li><a href="#working-tracks">Working tracks</a><ul>
 <li><a href="#plot">Plot</a></li>
-<li><a href="#setments">Setments</a></li>
+<li><a href="#segments">Segments</a></li>
+<li><a href="#net-square-displacement">Net Square displacement</a></li>
 </ul></li>
 </ul>
 </div>
@@ -237,12 +238,12 @@ write.csv(dat, file.path(tempdir(), &quot;text.csv&quot;))</code></pre>
 <pre class="r"><code>dat &lt;- read.csv(file.path(tempdir(), &quot;text.csv&quot;))
 head(dat)</code></pre>
 <pre><code>##   X ones                time         x          y optional
-## 1 1    1 2015-08-13 16:05:00 0.7964754 -0.1335861     TRUE
-## 2 2    1 2015-08-13 16:06:00 1.7638547 -0.1846211     TRUE
-## 3 3    1 2015-08-13 16:07:00 2.3043202  0.8672620     TRUE
-## 4 4    1 2015-08-13 16:08:00 3.5920068  1.5670007     TRUE
-## 5 5    1 2015-08-13 16:09:00 2.3148058  2.1317617     TRUE
-## 6 6    1 2015-08-13 16:10:00 2.6836096  1.3712519     TRUE</code></pre>
+## 1 1    1 2015-08-13 17:21:00 0.7964754 -0.1335861     TRUE
+## 2 2    1 2015-08-13 17:22:00 1.7638547 -0.1846211     TRUE
+## 3 3    1 2015-08-13 17:23:00 2.3043202  0.8672620     TRUE
+## 4 4    1 2015-08-13 17:24:00 3.5920068  1.5670007     TRUE
+## 5 5    1 2015-08-13 17:25:00 2.3148058  2.1317617     TRUE
+## 6 6    1 2015-08-13 17:26:00 2.6836096  1.3712519     TRUE</code></pre>
 <p>In order to create <code>RhrTrackST</code> object, we need the coordinates as <code>SpatialPoints</code> and parsed time stamps. We will first create <code>SpatialPoints</code> for the coordinates.</p>
 <pre class="r"><code>coords &lt;- SpatialPoints(dat[, c(&quot;x&quot;, &quot;y&quot;)])</code></pre>
 <p>Next we need to parse the time stamps, this is most easily done with the <code>lubridate</code> package.</p>
@@ -262,8 +263,8 @@ track1</code></pre>
 ##  ## Missing relocations           :     1000                
 ##  ## Traj with time                :     TRUE                
 ##  ## Regular track                 :     TRUE                
-##  ## Start                         :     2015-08-13 16:05:00 
-##  ## End                           :     2015-08-14 08:44:00 
+##  ## Start                         :     2015-08-13 17:21:00 
+##  ## End                           :     2015-08-14 10:00:00 
 ##  ## By                            :     1M 0S               
 ##  
 ##  ## Track data
@@ -299,8 +300,8 @@ track1</code></pre>
 <pre class="r"><code>plot(track1)</code></pre>
 <p><img src="cliTracks_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /></p>
 </div>
-<div id="setments" class="section level2">
-<h2>Setments</h2>
+<div id="segments" class="section level2">
+<h2>Segments</h2>
 <p>We can extract the segments and stat’s there of with <code>rhrSegments</code>:</p>
 <pre class="r"><code>seg1 &lt;- rhrSegments(track1)</code></pre>
 <p><code>seg1</code> is a <code>data.frame</code> with the start and end point of each segment, time and some basic statistics, such as</p>
@@ -313,6 +314,13 @@ track1</code></pre>
 <p>We could for example plot the distance that animal moved over time.</p>
 <pre class="r"><code>plot(rhrTimes(track1)[-1], seg1$distance, type = &quot;l&quot;, xlab = &quot;time&quot;, ylab = &quot;movement distance&quot;)</code></pre>
 <p><img src="cliTracks_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="672" /></p>
+</div>
+<div id="net-square-displacement" class="section level2">
+<h2>Net Square displacement</h2>
+<p>The function <code>rhrNSD</code> allows the calcualtion of the the net square displacement.</p>
+<pre class="r"><code>nsd &lt;- rhrNSD(track1)
+plot(nsd, type = &quot;l&quot;)</code></pre>
+<p><img src="cliTracks_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="672" /></p>
 </div>
 </div>
 

@@ -64,7 +64,7 @@ There is `plot` method for tracks.
 plot(track1)
 ```
 
-## Setments
+## Segments
 
 We can extract the segments and stat's there of with `rhrSegments`:
 
@@ -87,7 +87,14 @@ plot(rhrTimes(track1)[-1], seg1$distance, type = "l", xlab = "time", ylab = "mov
 
 
 
+## Net Square displacement
 
+The function `rhrNSD` allows the calcualtion of the the net square displacement.
+
+```{r}
+nsd <- rhrNSD(track1)
+plot(nsd, type = "l")
+```
 
 
 
