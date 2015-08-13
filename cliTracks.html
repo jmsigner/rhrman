@@ -10,7 +10,7 @@
 
 
 
-<title>Publications</title>
+<title>Working with tracks</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -187,12 +187,133 @@ img {
 </div><!--/.navbar -->
 
 <div id="header">
-<h1 class="title">Publications</h1>
+<h1 class="title">Working with tracks</h1>
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#create-a-track-from-a-.csv-file">Create a track from a <code>*.csv</code> file</a><ul>
+<li><a href="#generating-data">Generating data</a></li>
+<li><a href="#reading-the-data-and-create-a-track-object">Reading the data and create a track object</a></li>
+</ul></li>
+<li><a href="#working-tracks">Working tracks</a><ul>
+<li><a href="#plot">Plot</a></li>
+<li><a href="#setments">Setments</a></li>
+</ul></li>
+</ul>
+</div>
 
-<div id="peer-reviewd-publications-that-used-rhr" class="section level1">
-<h1>Peer reviewd publications that used <code>rhr</code></h1>
+<div id="create-a-track-from-a-.csv-file" class="section level1">
+<h1>Create a track from a <code>*.csv</code> file</h1>
+<p>Suppose the relocation data is stored in a <code>*.csv</code> file, we want to load the data into R and create an <code>RhrTrackST</code> object. We will start with simulating some data.</p>
+<div id="generating-data" class="section level2">
+<h2>Generating data</h2>
+<p>This step can be omitted if you work with your own data.</p>
+<pre class="r"><code>library(rhr)</code></pre>
+<pre><code>## Loading required package: Rcpp
+## Loading required package: ggplot2
+## Loading required package: grid
+## Loading required package: rgdal
+## Loading required package: sp
+## rgdal: version: 1.0-4, (SVN revision 548)
+##  Geospatial Data Abstraction Library extensions to R successfully loaded
+##  Loaded GDAL runtime: GDAL 1.11.0, released 2014/04/16
+##  Path to GDAL shared files: /usr/local/share/gdal
+##  Loaded PROJ.4 runtime: Rel. 4.8.0, 6 March 2012, [PJ_VERSION: 480]
+##  Path to PROJ.4 shared files: (autodetected)
+##  Linking to sp version: 1.1-1 
+## Loading required package: maptools
+## Checking rgeos availability: TRUE</code></pre>
+<pre class="r"><code>set.seed(123321)
+
+# Simulate a random walk
+dat &lt;- data.frame(rhrPoints(rhrRW()))
+
+## Save the data as csv
+write.csv(dat, file.path(tempdir(), &quot;text.csv&quot;))</code></pre>
+</div>
+<div id="reading-the-data-and-create-a-track-object" class="section level2">
+<h2>Reading the data and create a track object</h2>
+<pre class="r"><code>dat &lt;- read.csv(file.path(tempdir(), &quot;text.csv&quot;))
+head(dat)</code></pre>
+<pre><code>##   X ones                time         x          y optional
+## 1 1    1 2015-08-13 16:05:00 0.7964754 -0.1335861     TRUE
+## 2 2    1 2015-08-13 16:06:00 1.7638547 -0.1846211     TRUE
+## 3 3    1 2015-08-13 16:07:00 2.3043202  0.8672620     TRUE
+## 4 4    1 2015-08-13 16:08:00 3.5920068  1.5670007     TRUE
+## 5 5    1 2015-08-13 16:09:00 2.3148058  2.1317617     TRUE
+## 6 6    1 2015-08-13 16:10:00 2.6836096  1.3712519     TRUE</code></pre>
+<p>In order to create <code>RhrTrackST</code> object, we need the coordinates as <code>SpatialPoints</code> and parsed time stamps. We will first create <code>SpatialPoints</code> for the coordinates.</p>
+<pre class="r"><code>coords &lt;- SpatialPoints(dat[, c(&quot;x&quot;, &quot;y&quot;)])</code></pre>
+<p>Next we need to parse the time stamps, this is most easily done with the <code>lubridate</code> package.</p>
+<pre class="r"><code>library(lubridate)
+ts &lt;- ymd_hms(dat$time)</code></pre>
+<p>Finally we can create a <code>RhrTrackST</code> object:</p>
+<pre class="r"><code>track1 &lt;- rhrTrack(coords, ts)
+track1</code></pre>
+<pre><code>## 
+##  ## ======================================================
+##  ## Object of class RhrTrackSTR
+##  ## ======================================================
+##  
+##  ## Summary
+##  ## ------------------------------------------------------
+##  ## Number of relocation          :     1000                
+##  ## Missing relocations           :     1000                
+##  ## Traj with time                :     TRUE                
+##  ## Regular track                 :     TRUE                
+##  ## Start                         :     2015-08-13 16:05:00 
+##  ## End                           :     2015-08-14 08:44:00 
+##  ## By                            :     1M 0S               
+##  
+##  ## Track data
+##  ## ------------------------------------------------------
+##  ## x                             :     numeric             
+##  ## y                             :     numeric             
+##  ## sp.ID                         :     integer             
+##  ## time                          :     POSIXct,POSIXt      
+##  ## endTime                       :     POSIXct,POSIXt      
+##  ## timeIndex                     :     integer             
+##  ## ones                          :     integer             
+##  ## ======================================================
+##  
+##  ## Segments data
+##  ## ------------------------------------------------------
+##  ## x0                            :     numeric             
+##  ## x1                            :     numeric             
+##  ## y0                            :     numeric             
+##  ## y1                            :     numeric             
+##  ## distance                      :     numeric             
+##  ## duration                      :     numeric             
+##  ## speed                         :     numeric             
+##  ## direction                     :     numeric             
+##  ## ======================================================
+## </code></pre>
+</div>
+</div>
+<div id="working-tracks" class="section level1">
+<h1>Working tracks</h1>
+<div id="plot" class="section level2">
+<h2>Plot</h2>
+<p>There is <code>plot</code> method for tracks.</p>
+<pre class="r"><code>plot(track1)</code></pre>
+<p><img src="cliTracks_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="672" /></p>
+</div>
+<div id="setments" class="section level2">
+<h2>Setments</h2>
+<p>We can extract the segments and stat’s there of with <code>rhrSegments</code>:</p>
+<pre class="r"><code>seg1 &lt;- rhrSegments(track1)</code></pre>
+<p><code>seg1</code> is a <code>data.frame</code> with the start and end point of each segment, time and some basic statistics, such as</p>
+<ul>
+<li>distance</li>
+<li>duration</li>
+<li>speed</li>
+<li>direction.</li>
+</ul>
+<p>We could for example plot the distance that animal moved over time.</p>
+<pre class="r"><code>plot(rhrTimes(track1)[-1], seg1$distance, type = &quot;l&quot;, xlab = &quot;time&quot;, ylab = &quot;movement distance&quot;)</code></pre>
+<p><img src="cliTracks_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="672" /></p>
+</div>
 </div>
 
 

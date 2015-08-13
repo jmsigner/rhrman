@@ -1,0 +1,93 @@
+---
+title: Working with tracks
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+
+# Create a track from a `*.csv` file
+
+Suppose the relocation data is stored in a `*.csv` file, we want to load the data into R and create an `RhrTrackST` object. We will start with simulating some data.
+
+## Generating data
+
+This step can be omitted if you work with your own data.
+
+```{r}
+library(rhr)
+set.seed(123321)
+
+# Simulate a random walk
+dat <- data.frame(rhrPoints(rhrRW()))
+
+## Save the data as csv
+write.csv(dat, file.path(tempdir(), "text.csv"))
+```
+
+## Reading the data and create a track object
+
+
+```{r}
+dat <- read.csv(file.path(tempdir(), "text.csv"))
+head(dat)
+```
+
+In order to create `RhrTrackST` object, we need the coordinates as `SpatialPoints` and parsed time stamps. We will first create `SpatialPoints` for the coordinates.
+
+```{r}
+coords <- SpatialPoints(dat[, c("x", "y")])
+```
+
+Next we need to parse the time stamps, this is most easily done with the `lubridate` package.
+
+```{r}
+library(lubridate)
+ts <- ymd_hms(dat$time)
+```
+
+Finally we can create a `RhrTrackST` object:
+
+```{r}
+track1 <- rhrTrack(coords, ts)
+track1
+```
+
+# Working tracks
+
+## Plot
+
+There is `plot` method for tracks.
+
+```{r}
+plot(track1)
+```
+
+## Setments
+
+We can extract the segments and stat's there of with `rhrSegments`:
+
+```{r}
+seg1 <- rhrSegments(track1)
+```
+
+`seg1` is a `data.frame` with the start and end point of each segment, time and some basic statistics, such as 
+
+- distance
+- duration
+- speed 
+- direction.
+
+We could for example plot the distance that animal moved over time. 
+
+```{r}
+plot(rhrTimes(track1)[-1], seg1$distance, type = "l", xlab = "time", ylab = "movement distance")
+```
+
+
+
+
+
+
+
