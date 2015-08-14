@@ -196,7 +196,7 @@ img {
 <li><a href="#generating-data">Generating data</a></li>
 <li><a href="#reading-the-data-and-create-a-track-object">Reading the data and create a track object</a></li>
 </ul></li>
-<li><a href="#working-tracks">Working tracks</a><ul>
+<li><a href="#working-with-tracks">Working with tracks</a><ul>
 <li><a href="#plot">Plot</a></li>
 <li><a href="#segments">Segments</a></li>
 <li><a href="#net-square-displacement">Net Square displacement</a></li>
@@ -238,12 +238,12 @@ write.csv(dat, file.path(tempdir(), &quot;text.csv&quot;))</code></pre>
 <pre class="r"><code>dat &lt;- read.csv(file.path(tempdir(), &quot;text.csv&quot;))
 head(dat)</code></pre>
 <pre><code>##   X ones                time         x          y optional
-## 1 1    1 2015-08-14 13:54:00 0.7964754 -0.1335861     TRUE
-## 2 2    1 2015-08-14 13:55:00 1.7638547 -0.1846211     TRUE
-## 3 3    1 2015-08-14 13:56:00 2.3043202  0.8672620     TRUE
-## 4 4    1 2015-08-14 13:57:00 3.5920068  1.5670007     TRUE
-## 5 5    1 2015-08-14 13:58:00 2.3148058  2.1317617     TRUE
-## 6 6    1 2015-08-14 13:59:00 2.6836096  1.3712519     TRUE</code></pre>
+## 1 1    1 2015-08-14 13:57:00 0.7964754 -0.1335861     TRUE
+## 2 2    1 2015-08-14 13:58:00 1.7638547 -0.1846211     TRUE
+## 3 3    1 2015-08-14 13:59:00 2.3043202  0.8672620     TRUE
+## 4 4    1 2015-08-14 14:00:00 3.5920068  1.5670007     TRUE
+## 5 5    1 2015-08-14 14:01:00 2.3148058  2.1317617     TRUE
+## 6 6    1 2015-08-14 14:02:00 2.6836096  1.3712519     TRUE</code></pre>
 <p>In order to create <code>RhrTrackST</code> object, we need the coordinates as <code>SpatialPoints</code> and parsed time stamps. We will first create <code>SpatialPoints</code> for the coordinates.</p>
 <pre class="r"><code>coords &lt;- SpatialPoints(dat[, c(&quot;x&quot;, &quot;y&quot;)])</code></pre>
 <p>Next we need to parse the time stamps, this is most easily done with the <code>lubridate</code> package.</p>
@@ -263,8 +263,8 @@ track1</code></pre>
 ##  ## Missing relocations           :     1000                
 ##  ## Traj with time                :     TRUE                
 ##  ## Regular track                 :     TRUE                
-##  ## Start                         :     2015-08-14 13:54:00 
-##  ## End                           :     2015-08-15 06:33:00 
+##  ## Start                         :     2015-08-14 13:57:00 
+##  ## End                           :     2015-08-15 06:36:00 
 ##  ## By                            :     1M 0S               
 ##  
 ##  ## Track data
@@ -292,8 +292,8 @@ track1</code></pre>
 ## </code></pre>
 </div>
 </div>
-<div id="working-tracks" class="section level1">
-<h1>Working tracks</h1>
+<div id="working-with-tracks" class="section level1">
+<h1>Working with tracks</h1>
 <div id="plot" class="section level2">
 <h2>Plot</h2>
 <p>There is <code>plot</code> method for tracks.</p>

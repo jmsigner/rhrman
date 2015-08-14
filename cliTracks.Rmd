@@ -54,7 +54,7 @@ track1 <- rhrTrack(coords, ts)
 track1
 ```
 
-# Working tracks
+# Working with tracks
 
 ## Plot
 
