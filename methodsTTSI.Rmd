@@ -17,7 +17,7 @@ knitr::opts_chunk$set(cache = TRUE)
 
 # Background 
 
-[Swithart and Slade 1985](http://www.esajournals.org/doi/abs/10.2307/1939170) introduced a method to test for the temporal independence of animal relocations. Whether or not independence is prerequisite for home-range estimation has received much attention (e.g., [Fieberg 2007](http://www.esajournals.org/doi/abs/10.1890/06-0930), [deSolla et al](http://onlinelibrary.wiley.com/doi/10.1046/j.1365-2656.1999.00279.x/full)). Newer home-range estimation methods also have the ability to explicitly model temporal autocorrelation (e.g., [Fleming et al 2015](http://www.esajournals.org/doi/10.1890/14-2010.1)). We provide the method proposed by Swithart and Slade (1985) here. **However, we do not give any recommodation to use it, or to subsample data to reach independepence**. 
+[Swithart and Slade 1985](http://www.esajournals.org/doi/abs/10.2307/1939170) introduced a method to test for the temporal independence of animal relocations. Whether or not independence is prerequisite for home-range estimation has received much attention (e.g., [Fieberg 2007](http://www.esajournals.org/doi/abs/10.1890/06-0930), [deSolla et al](http://onlinelibrary.wiley.com/doi/10.1046/j.1365-2656.1999.00279.x/full)). Newer home-range estimation methods also have the ability to explicitly model temporal auto correlation (e.g., [Fleming et al 2015](http://www.esajournals.org/doi/10.1890/14-2010.1)). We provide the method proposed by Swithart and Slade (1985) here. **However, we do not give any recommodation to use it, or to subsample data to reach independepence**. 
 
 
 # Calculation
@@ -39,7 +39,24 @@ From the command line TTSI can be calculated with the function `rhrTTSI()`
 
 # Interpretation
 
-The main results from the TTSI analysis is one plot with two panels. In the upper panel the value of the test statistic is shown and in the lower panel the number of relocation pairs being used. The red dashed line shows the critical value of 2 and the grey line shows the the adjusted critical value. If the test statistic is above the critical for a given number of times (this can be adjusted in the configuration and defaults to three) TTSI is reached. This is indicated by a red circle.
+The main results from the TTSI analysis is one plot with two panels. In the upper panel the value of the test statistic is shown and in the lower panel the number of relocation pairs being used. The solid black line shows the value of the test statistic, the grey line is the value of the critical that need to be reached in order to obtain have temporal independence according to this method. If TTSI is reached (second example below) a red line dot and dashed line are shown.
+
+In the first example the TTSI is not reached.
+
+```{r, echo = FALSE, warning=FALSE}
+p1 <- rhrRW()
+tt1 <- rhrTTSI(p1, interval = 10)
+plot(tt1)
+```
+
+Next an example of trajectory that reaches TTSI.
 
 
+```{r, echo = FALSE, warning=FALSE}
+p1 <- rhrOU()
+tt1 <- rhrTTSI(p1, interval = 10)
+plot(tt1)
+```
+
+Note that two simulated trajectory where used. In the first example we used a random walk (i.e., non stationary distribution) and in the second case an Ornstein-Uhlenbeck process (a stationary distribution). This highlights a further point of caution. 
 
