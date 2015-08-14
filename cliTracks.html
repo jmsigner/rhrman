@@ -238,12 +238,12 @@ write.csv(dat, file.path(tempdir(), &quot;text.csv&quot;))</code></pre>
 <pre class="r"><code>dat &lt;- read.csv(file.path(tempdir(), &quot;text.csv&quot;))
 head(dat)</code></pre>
 <pre><code>##   X ones                time         x          y optional
-## 1 1    1 2015-08-14 13:45:00 0.7964754 -0.1335861     TRUE
-## 2 2    1 2015-08-14 13:46:00 1.7638547 -0.1846211     TRUE
-## 3 3    1 2015-08-14 13:47:00 2.3043202  0.8672620     TRUE
-## 4 4    1 2015-08-14 13:48:00 3.5920068  1.5670007     TRUE
-## 5 5    1 2015-08-14 13:49:00 2.3148058  2.1317617     TRUE
-## 6 6    1 2015-08-14 13:50:00 2.6836096  1.3712519     TRUE</code></pre>
+## 1 1    1 2015-08-14 13:54:00 0.7964754 -0.1335861     TRUE
+## 2 2    1 2015-08-14 13:55:00 1.7638547 -0.1846211     TRUE
+## 3 3    1 2015-08-14 13:56:00 2.3043202  0.8672620     TRUE
+## 4 4    1 2015-08-14 13:57:00 3.5920068  1.5670007     TRUE
+## 5 5    1 2015-08-14 13:58:00 2.3148058  2.1317617     TRUE
+## 6 6    1 2015-08-14 13:59:00 2.6836096  1.3712519     TRUE</code></pre>
 <p>In order to create <code>RhrTrackST</code> object, we need the coordinates as <code>SpatialPoints</code> and parsed time stamps. We will first create <code>SpatialPoints</code> for the coordinates.</p>
 <pre class="r"><code>coords &lt;- SpatialPoints(dat[, c(&quot;x&quot;, &quot;y&quot;)])</code></pre>
 <p>Next we need to parse the time stamps, this is most easily done with the <code>lubridate</code> package.</p>
@@ -263,8 +263,8 @@ track1</code></pre>
 ##  ## Missing relocations           :     1000                
 ##  ## Traj with time                :     TRUE                
 ##  ## Regular track                 :     TRUE                
-##  ## Start                         :     2015-08-14 13:45:00 
-##  ## End                           :     2015-08-15 06:24:00 
+##  ## Start                         :     2015-08-14 13:54:00 
+##  ## End                           :     2015-08-15 06:33:00 
 ##  ## By                            :     1M 0S               
 ##  
 ##  ## Track data
@@ -306,6 +306,12 @@ library(scales)
 plot(trackSeg, lwd = rescale(trackSeg$distance, c(0.01, 4)), 
      axes = TRUE)</code></pre>
 <p><img src="cliTracks_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="672" /></p>
+<p>Or we could color segements according to some path characteristic.</p>
+<pre class="r"><code>cols &lt;- colorRampPalette(c(&quot;blue&quot;, &quot;red&quot;))(length(trackSeg$distance))
+cols &lt;- cols[order(trackSeg$distance)]
+
+plot(trackSeg, lwd = 2, col = cols,  axes = TRUE)</code></pre>
+<p><img src="cliTracks_files/figure-html/unnamed-chunk-8-1.png" title="" alt="" width="672" /></p>
 </div>
 <div id="segments" class="section level2">
 <h2>Segments</h2>
@@ -320,14 +326,14 @@ plot(trackSeg, lwd = rescale(trackSeg$distance, c(0.01, 4)),
 </ul>
 <p>We could for example plot the distance that animal moved over time.</p>
 <pre class="r"><code>plot(rhrTimes(track1)[-1], seg1$distance, type = &quot;l&quot;, xlab = &quot;time&quot;, ylab = &quot;movement distance&quot;)</code></pre>
-<p><img src="cliTracks_files/figure-html/unnamed-chunk-9-1.png" title="" alt="" width="672" /></p>
+<p><img src="cliTracks_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="672" /></p>
 </div>
 <div id="net-square-displacement" class="section level2">
 <h2>Net Square displacement</h2>
 <p>The function <code>rhrNSD</code> allows the calcualtion of the the net square displacement.</p>
 <pre class="r"><code>nsd &lt;- rhrNSD(track1)
 plot(nsd, type = &quot;l&quot;)</code></pre>
-<p><img src="cliTracks_files/figure-html/unnamed-chunk-10-1.png" title="" alt="" width="672" /></p>
+<p><img src="cliTracks_files/figure-html/unnamed-chunk-11-1.png" title="" alt="" width="672" /></p>
 </div>
 </div>
 

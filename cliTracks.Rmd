@@ -74,6 +74,14 @@ plot(trackSeg, lwd = rescale(trackSeg$distance, c(0.01, 4)),
      axes = TRUE)
 ```
 
+Or we could color segements according to some path characteristic.
+
+```{r}
+cols <- colorRampPalette(c("blue", "red"))(length(trackSeg$distance))
+cols <- cols[order(trackSeg$distance)]
+
+plot(trackSeg, lwd = 2, col = cols,  axes = TRUE)
+```
 
 
 ## Segments
