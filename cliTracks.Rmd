@@ -64,6 +64,18 @@ There is `plot` method for tracks.
 plot(track1)
 ```
 
+Sometimes it my be desireable to map a certain attribute on the path. In the next example, we will use variable line with as a function of the step length. 
+
+```{r}
+trackSeg <- rhrSegments(track1, spatial = TRUE)
+
+library(scales)
+plot(trackSeg, lwd = rescale(trackSeg$distance, c(0.01, 4)), 
+     axes = TRUE)
+```
+
+
+
 ## Segments
 
 We can extract the segments and stat's there of with `rhrSegments`:
