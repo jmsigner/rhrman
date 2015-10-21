@@ -198,22 +198,14 @@ img {
 <div id="installation-of-the-package" class="section level1">
 <h1>Installation of the package</h1>
 <p>Currently the package is hosted on github and can be installed from there. We have also set up a repository hosting the <code>rhr</code> package. When you install the package for the first time, it is very likely that many additional packages are being installed. This is because the <code>rhr</code> package depends on several other <strong>R</strong>-packages, which in turn depend on further packages. Luckily <strong>R</strong>’s packaging system usually does a very good job and automatically installs all dependencies, so that we do not have to intervene here manually.</p>
-<div id="installation-of-rhr-from-github" class="section level2">
-<h2>Installation of <code>rhr</code> from github</h2>
-<p>To install the package from git hub use the <code>devtools</code> package. Simply use:</p>
-<pre class="r"><code>if (!require(devtools)) {
-  install.packages(&quot;devtools&quot;)
-}
-devtools::install_github(&quot;rhr&quot;, &quot;jmsigner&quot;)</code></pre>
-</div>
 <div id="installation-of-rhr-from-an-alternative-repository" class="section level2">
 <h2>Installation of <code>rhr</code> from an alternative repository</h2>
 <p>At the moment it is recommended to install the package from an alternative repository. This can be done by copying the following command and pasting it to <strong>R</strong>’s command line.</p>
 <pre class="r"><code>  install.packages(&quot;rhr&quot;, repos=c(&quot;http://78.47.85.98/R&quot;,  
                                   &quot;http://cran.rstudio.com/&quot;), dep = TRUE)</code></pre>
 </div>
-<div id="installation-for-mac" class="section level2">
-<h2>Installation for Mac</h2>
+<div id="installation-for-mac-users" class="section level2">
+<h2>Installation for Mac users</h2>
 <p>First make sure all the depdencies are installed:</p>
 <pre class="r"><code>avail &lt;- installed.packages()[, 1]
 needed &lt;- c(&quot;grid&quot;, &quot;maptools&quot;,  &quot;raster&quot;, &quot;adehabitatHR&quot;, &quot;adehabitatLT&quot;, &quot;ggplot2&quot;, &quot;graphics&quot;, &quot;gridExtra&quot;, &quot;KernSmooth&quot;, &quot;lubridate&quot;, &quot;mixtools&quot;, &quot;mvtnorm&quot;, &quot;rgdal&quot;, &quot;rgeos&quot;, &quot;reshape2&quot;, &quot;sp&quot;, &quot;spacetime&quot;, &quot;stringr&quot;, &quot;trajectories&quot;, &quot;zoo&quot;, &quot;shiny&quot;, &quot;knitr&quot;, &quot;markdown&quot;, &quot;testthat&quot;, &quot;shinyBS&quot;, &quot;brew&quot;, &quot;xtable&quot;)

@@ -12,16 +12,6 @@ In order to work with the `rhr` package, **R** needs to be installed on your sys
 # Installation of the package
 Currently the package is hosted on github and can be installed from there. We have also set up a repository hosting the `rhr` package. When you install the package for the first time, it is very likely that many additional packages are being installed. This is because the `rhr` package depends on several other **R**-packages, which in turn depend on further packages. Luckily **R**'s packaging system usually does a very good job and automatically installs all dependencies, so that we do not have to intervene here manually.
 
-## Installation of `rhr` from github
-To install the package from git hub use the `devtools` package. Simply use:
-```{r, eval = FALSE}
-if (!require(devtools)) {
-  install.packages("devtools")
-}
-devtools::install_github("rhr", "jmsigner")
-
-```
-
 
 ## Installation of `rhr` from an alternative repository
 At the moment it is recommended to install the package from an alternative repository. This can be done by copying the following command and pasting it to **R**'s command line.
@@ -31,7 +21,7 @@ At the moment it is recommended to install the package from an alternative repos
 ```
 
 
-## Installation for Mac
+## Installation for Mac users
 
 First make sure all the depdencies are installed:
 
