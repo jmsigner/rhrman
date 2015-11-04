@@ -54,6 +54,7 @@ track1 <- rhrTrack(coords, ts)
 track1
 ```
 
+
 # Working with tracks
 
 ## Plot
@@ -64,7 +65,7 @@ There is `plot` method for tracks.
 plot(track1)
 ```
 
-Sometimes it my be desireable to map a certain attribute on the path. In the next example, we will use variable line with as a function of the step length. 
+Sometimes it my be desirable to map a certain attribute on the path. In the next example, we will use variable line with as a function of the step length. 
 
 ```{r}
 trackSeg <- rhrSegments(track1, spatial = TRUE)
@@ -74,7 +75,7 @@ plot(trackSeg, lwd = rescale(trackSeg$distance, c(0.01, 4)),
      axes = TRUE)
 ```
 
-Or we could color segements according to some path characteristic.
+Or we could color segments according to some path characteristic.
 
 ```{r}
 cols <- colorRampPalette(c("blue", "red"))(length(trackSeg$distance))
@@ -86,7 +87,7 @@ plot(trackSeg, lwd = 2, col = cols,  axes = TRUE)
 
 ## Segments
 
-We can extract the segments and stat's there of with `rhrSegments`:
+We can extract the segments and stats there of with `rhrSegments`:
 
 ```{r}
 seg1 <- rhrSegments(track1)
@@ -106,15 +107,79 @@ plot(rhrTimes(track1)[-1], seg1$distance, type = "l", xlab = "time", ylab = "mov
 ```
 
 
-
 ## Net Square displacement
 
-The function `rhrNSD` allows the calcualtion of the the net square displacement.
+The function `rhrNSD` allows the calculation of the the net square displacement.
 
 ```{r}
 nsd <- rhrNSD(track1)
 plot(nsd, type = "l")
 ```
 
+# Tracks with properties
 
+It is also possible to add some additional information to a track (e.g., behavioral state, landscape attributes). 
+
+
+```{r}
+dat <- read.csv(file.path(tempdir(), "text.csv"))
+head(dat)
+```
+
+We proceed in the same way as before, but make use of a `SpatialPointsDataFrame`. 
+
+
+```{r}
+# simulate some env covariates
+attr <- data.frame(mode = sample(c("feeding", "sleeping", "moving"), nrow(dat), TRUE), 
+                   elevation = runif(100, 500, nrow(dat)))
+
+coords <- SpatialPointsDataFrame(dat[, c("x", "y")], attr)
+```
+
+Next we need to parse the time stamps, this is most easily done with the `lubridate` package.
+
+```{r}
+ts <- ymd_hms(dat$time)
+```
+
+Finally we can create a `RhrTrackST` object:
+
+```{r}
+track1 <- rhrTrack(coords, ts)
+track1
+```
+
+Lets get points and the segments back from the track:
+
+```{r}
+seg1 <- rhrSegments(track1, spatial = TRUE)
+head(seg1)
+```
+
+The attributes are lost from `track1`. That is because `R` does not know what to do with it, because each segment has a start and end point where the attributes are measured. We can add easily add attributes to segments with by asking for the points with attributes:
+
+```{r}
+pts <- rhrPoints(track1)
+head(pts)
+```
+
+Lets add the movement mode at the start (`mode_end`) and at the end  (`mode_start`) to each segment, we can do this with:
+
+```{r}
+seg1$mode_start <- pts$mode[-nrow(pts)]
+seg1$mode_end <- pts$mode[-1]
+```
+
+Similarly we could also take the mean elevation of the start and end point:
+
+```{r}
+seg1$mean_ele <- (pts$elevation[-1] + pts$elevation[-nrow(pts)])/2
+```
+
+As shown before, we can use these attributes to create plots:
+
+```{r}
+plot(seg1, col = as.numeric(as.factor(seg1$mode_start)))
+```
 
