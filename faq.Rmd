@@ -113,3 +113,39 @@ kernel.area(k1, unout = "m2", standardize = TRUE, percent = 95)
 kernel.area(k2, unout = "m2", standardize = TRUE, percent = 95)
 
 ```
+
+
+## Effect of buffer and resolution on bandwidth
+
+Consider the following example
+
+```{r, warning = FALSE}
+library(rhr)
+data(datSH)
+
+h1 <- rhrHrefScaled(datSH[, 2:3]) # the default
+h2 <- rhrHrefScaled(datSH[, 2:3], trast = rhrRasterFromExt(rhrExtFromPoints(datSH[, 2:3], extendRange = 0.8), nrow =
+  100, res = NULL)) # the default
+
+h1
+h2
+```
+
+This also impacts the area of a KDE estimate:
+
+```{r}
+rhrArea(rhrKDE(datSH[, 2:3], h = h1$h))
+rhrArea(rhrKDE(datSH[, 2:3], h = h2$h))
+```
+
+We can change the results further by changing the extent of the raster
+
+```{r, warning = FALSE}
+rhrArea(rhrKDE(datSH[, 2:3], trast = rhrRasterFromExt(rhrExtFromPoints(datSH[, 2:3], extendRange = 0.8), nrow =
+  100, res = NULL), h = h1$h))
+
+rhrArea(rhrKDE(datSH[, 2:3], trast = rhrRasterFromExt(rhrExtFromPoints(datSH[, 2:3], extendRange = 0.8), nrow =
+  100, res = NULL), h = h2$h))
+```
+
+

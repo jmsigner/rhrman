@@ -197,6 +197,7 @@ img {
 </ul></li>
 <li><a href="#kernel-density-estimation-kde">Kernel Density Estimation (KDE)</a><ul>
 <li><a href="#why-is-buffer-width-important">Why is buffer width important?</a></li>
+<li><a href="#effect-of-buffer-and-resolution-on-bandwidth">Effect of buffer and resolution on bandwidth</a></li>
 </ul></li>
 </ul>
 </div>
@@ -231,9 +232,10 @@ plot(path, type = &quot;l&quot;, asp = 1)</code></pre>
   rhrRasterFromExt(rhrExtFromPoints(path, buff = 200), res = 1), 
   rhrRasterFromExt(rhrExtFromPoints(path, buff = 10), res = 10), 
   rhrRasterFromExt(rhrExtFromPoints(path, buff = 200), res = 10)
-)
-
-bbx &lt;- lapply(b, function(x) rgeos::gEnvelope(SpatialPoints(t(bbox(x)))))
+)</code></pre>
+<pre><code>## NOTE: rgdal::checkCRSArgs: no proj_defs.dat in PROJ.4 shared files
+## NOTE: rgdal::checkCRSArgs: no proj_defs.dat in PROJ.4 shared files</code></pre>
+<pre class="r"><code>bbx &lt;- lapply(b, function(x) rgeos::gEnvelope(SpatialPoints(t(bbox(x)))))
 
 plot(bbx[[4]], border = &quot;black&quot;, main = &quot;Buffers&quot;)
 plot(bbx[[3]], border = &quot;red&quot;, add = TRUE)
@@ -273,6 +275,60 @@ axis(2)</code></pre>
 <li>The effect of buffer width is stronger with lower resolution (i.e., larger pixels).</li>
 <li>Estimates of home-range area are less sensitive to buffer width than to resolution.</li>
 </ul>
+</div>
+<div id="effect-of-buffer-and-resolution-on-bandwidth" class="section level2">
+<h2>Effect of buffer and resolution on bandwidth</h2>
+<p>Consider the following example</p>
+<pre class="r"><code>library(rhr)
+data(datSH)
+
+h1 &lt;- rhrHrefScaled(datSH[, 2:3]) # the default</code></pre>
+<pre><code>## rhrRasterFromExt: using equal nrow and ncol</code></pre>
+<pre class="r"><code>h2 &lt;- rhrHrefScaled(datSH[, 2:3], trast = rhrRasterFromExt(rhrExtFromPoints(datSH[, 2:3], extendRange = 0.8), nrow =
+  100, res = NULL)) # the default</code></pre>
+<pre><code>## rhrRasterFromExt: using equal nrow and ncol</code></pre>
+<pre class="r"><code>h1</code></pre>
+<pre><code>## $h
+## [1] 707.8309
+## 
+## $success
+## [1] TRUE
+## 
+## $niter
+## [1] 13</code></pre>
+<pre class="r"><code>h2</code></pre>
+<pre><code>## $h
+## [1] 681.1043
+## 
+## $success
+## [1] TRUE
+## 
+## $niter
+## [1] 13</code></pre>
+<p>This also impacts the area of a KDE estimate:</p>
+<pre class="r"><code>rhrArea(rhrKDE(datSH[, 2:3], h = h1$h))</code></pre>
+<pre><code>## rhrRasterFromExt: using equal nrow and ncol</code></pre>
+<pre><code>## Warning in rhrKDE(datSH[, 2:3], h = h1$h): rhrKDE: same bandwidth is used
+## in x and y direction</code></pre>
+<pre><code>##   level     area
+## 1    95 43013574</code></pre>
+<pre class="r"><code>rhrArea(rhrKDE(datSH[, 2:3], h = h2$h))</code></pre>
+<pre><code>## rhrRasterFromExt: using equal nrow and ncol</code></pre>
+<pre><code>## Warning in rhrKDE(datSH[, 2:3], h = h2$h): rhrKDE: same bandwidth is used
+## in x and y direction</code></pre>
+<pre><code>##   level     area
+## 1    95 41660242</code></pre>
+<p>We can change the results further by changing the extent of the raster</p>
+<pre class="r"><code>rhrArea(rhrKDE(datSH[, 2:3], trast = rhrRasterFromExt(rhrExtFromPoints(datSH[, 2:3], extendRange = 0.8), nrow =
+  100, res = NULL), h = h1$h))</code></pre>
+<pre><code>## rhrRasterFromExt: using equal nrow and ncol</code></pre>
+<pre><code>##   level     area
+## 1    95 43450498</code></pre>
+<pre class="r"><code>rhrArea(rhrKDE(datSH[, 2:3], trast = rhrRasterFromExt(rhrExtFromPoints(datSH[, 2:3], extendRange = 0.8), nrow =
+  100, res = NULL), h = h2$h))</code></pre>
+<pre><code>## rhrRasterFromExt: using equal nrow and ncol</code></pre>
+<pre><code>##   level     area
+## 1    95 41959392</code></pre>
 </div>
 </div>
 
