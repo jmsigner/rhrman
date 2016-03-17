@@ -99,7 +99,7 @@ Often it may be useful to work with more than one animal or instance (i.e., diff
 
 As an example, we will estimate monthly home ranges for the example red deer data set `datSH`. To do this we have to go through 3 steps:
 
-1. Define a factor to split data (e.g., species id, month of the year, study area).
+1. Define a factor to split the data (e.g., species id, month of the year, study area).
 2. Split the data with R's `split` function.
 3. Apply some home range estimate.
 
