@@ -213,12 +213,12 @@ img {
 </div>
 <div id="calculation" class="section level1">
 <h1>Calculation</h1>
-<p>The test whether or not animal exhibits site fidelity the LI and MSD metric a compared to random trajectory. Randomly permuting step lengths and connected them with random angles. This is done <span class="math">\(n = 100\)</span> times and for each random trajectory LI and MSD are calculated to obtain a distribution of these values. Finally the values for LI and MSD are compared to the distribution LI and MSD for random trajectories.</p>
+<p>The test whether or not animal exhibits site fidelity the LI and MSD metric a compared to random trajectory. Randomly permuting step lengths and connected them with random angles. This is done <span class="math inline">\(n = 100\)</span> times and for each random trajectory LI and MSD are calculated to obtain a distribution of these values. Finally the values for LI and MSD are compared to the distribution LI and MSD for random trajectories.</p>
 <p><img src="methodsSF_files/figure-html/randomTraj-1.png" title="" alt="" width="672" /></p>
 </div>
 <div id="interpretation" class="section level1">
 <h1>Interpretation</h1>
-<p><code>rhr</code> produces an histogram for LI and MSD and indicates where the critical threshold (red dashed lines) is located (by default using <span class="math">\(\alpha = 0.05\)</span>) and the observed value (red solid line).</p>
+<p><code>rhr</code> produces an histogram for LI and MSD and indicates where the critical threshold (red dashed lines) is located (by default using <span class="math inline">\(\alpha = 0.05\)</span>) and the observed value (red solid line).</p>
 <pre class="r"><code>sf &lt;- rhrSiteFidelity(datSH[1:500, 2:3], n = 500)
 plot(sf)</code></pre>
 <pre><code>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.

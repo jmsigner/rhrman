@@ -232,10 +232,9 @@ plot(path, type = &quot;l&quot;, asp = 1)</code></pre>
   rhrRasterFromExt(rhrExtFromPoints(path, buff = 200), res = 1), 
   rhrRasterFromExt(rhrExtFromPoints(path, buff = 10), res = 10), 
   rhrRasterFromExt(rhrExtFromPoints(path, buff = 200), res = 10)
-)</code></pre>
-<pre><code>## NOTE: rgdal::checkCRSArgs: no proj_defs.dat in PROJ.4 shared files
-## NOTE: rgdal::checkCRSArgs: no proj_defs.dat in PROJ.4 shared files</code></pre>
-<pre class="r"><code>bbx &lt;- lapply(b, function(x) rgeos::gEnvelope(SpatialPoints(t(bbox(x)))))
+)
+
+bbx &lt;- lapply(b, function(x) rgeos::gEnvelope(SpatialPoints(t(bbox(x)))))
 
 plot(bbx[[4]], border = &quot;black&quot;, main = &quot;Buffers&quot;)
 plot(bbx[[3]], border = &quot;red&quot;, add = TRUE)

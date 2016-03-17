@@ -197,6 +197,7 @@ img {
 <li><a href="#working-with-the-result">Working with the result</a></li>
 <li><a href="#saving-results">Saving results</a></li>
 </ul></li>
+<li><a href="#working-with-several-animalsinstances">Working with several animals/instances</a></li>
 </ul>
 </div>
 
@@ -305,6 +306,50 @@ rhrArea(kdehref1, levels = seq(10, 90, 5))</code></pre>
 <p>Isopleths can be saved various GIS formats, e.g.,</p>
 <pre class="r"><code>raster::shapefile(iso1, &quot;myShape.shp&quot;)</code></pre>
 </div>
+</div>
+<div id="working-with-several-animalsinstances" class="section level1">
+<h1>Working with several animals/instances</h1>
+<p>Often it may be useful to work with more than one animal or instance (i.e., different tracking periods of the same animal) simultaneously. <code>rhr</code> does not provide direct support for this. However, it can be easily achieved using base R.</p>
+<p>As an example, we will estimate monthly home ranges for the example red deer data set <code>datSH</code>. To do this we have to go through 3 steps:</p>
+<ol style="list-style-type: decimal">
+<li>Define a factor to split data (e.g., species id, month of the year, study area).</li>
+<li>Split the data with R’s <code>split</code> function.</li>
+<li>Apply some home range estimate.</li>
+</ol>
+<pre class="r"><code>library(rhr)
+library(lubridate)
+data(datSH)
+
+# 1. define a splitting variable, here I will use the months
+datSH$month &lt;- round_date(ymd(datSH$day), &quot;month&quot;)
+
+# 2. Split the data
+dat2 &lt;- split(datSH, datSH$month)
+
+# 3. Apply home range estimates
+hrs &lt;- lapply(dat2, function(x) rhrKDE(x[, 2:3]))  # x is now the data for 1 month</code></pre>
+<pre><code>## rhrRasterFromExt: using equal nrow and ncol
+## rhrRasterFromExt: using equal nrow and ncol
+## rhrRasterFromExt: using equal nrow and ncol
+## rhrRasterFromExt: using equal nrow and ncol
+## rhrRasterFromExt: using equal nrow and ncol
+## rhrRasterFromExt: using equal nrow and ncol
+## rhrRasterFromExt: using equal nrow and ncol
+## rhrRasterFromExt: using equal nrow and ncol
+## rhrRasterFromExt: using equal nrow and ncol
+## rhrRasterFromExt: using equal nrow and ncol</code></pre>
+<p><code>hrs</code> is now a list where each entry is the kernel density estimate for one month. To obtain the home range size (HRS) of the first month, we can use:</p>
+<pre class="r"><code>rhrArea(hrs[[1]])</code></pre>
+<pre><code>##   level   area
+## 1    95 774638</code></pre>
+<p>and with <code>sapply</code> we can easily obtain the home range size for all months.</p>
+<pre class="r"><code>sapply(hrs, rhrArea)</code></pre>
+<pre><code>##       2008-04-01 2008-05-01 2008-06-01 2008-07-01 2008-08-01 2009-01-01
+## level 95         95         95         95         95         95        
+## area  774638     9727988    21492189   5226063    3799606    502955.9  
+##       2009-02-01 2009-03-01 2009-04-01 2009-05-01
+## level 95         95         95         95        
+## area  7797540    15470853   7508145    7501840</code></pre>
 </div>
 
 

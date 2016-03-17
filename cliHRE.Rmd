@@ -93,6 +93,47 @@ raster::shapefile(iso1, "myShape.shp")
 ```
 
 
+# Working with several animals/instances
+
+Often it may be useful to work with more than one animal or instance (i.e., different tracking periods of the same animal) simultaneously. `rhr` does not provide direct support for this. However, it can be easily achieved using base R.
+
+As an example, we will estimate monthly home ranges for the example red deer data set `datSH`. To do this we have to go through 3 steps:
+
+1. Define a factor to split data (e.g., species id, month of the year, study area).
+2. Split the data with R's `split` function.
+3. Apply some home range estimate.
+
+
+```{r}
+library(rhr)
+library(lubridate)
+data(datSH)
+
+# 1. define a splitting variable, here I will use the months
+datSH$month <- round_date(ymd(datSH$day), "month")
+
+# 2. Split the data
+dat2 <- split(datSH, datSH$month)
+
+# 3. Apply home range estimates
+hrs <- lapply(dat2, function(x) rhrKDE(x[, 2:3]))  # x is now the data for 1 month
+```
+
+`hrs` is now a list where each entry is the kernel density estimate for one month. To obtain the home range size (HRS) of the first month, we can use:
+
+```{r}
+rhrArea(hrs[[1]])
+```
+
+and with `sapply` we can easily obtain the home range size for all months.
+
+```{r}
+sapply(hrs, rhrArea)
+```
+
+
+
+
 
 
 
