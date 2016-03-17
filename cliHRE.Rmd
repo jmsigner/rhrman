@@ -134,9 +134,31 @@ sapply(hrs, rhrArea)
 
 
 
+## Adjusting animal specific parameters
+
+If, e.g., parameters such as the bandwidth should be instance specific there are two ways:
+
+1. Estimate the parameters for each instance.
+2. Estimate the parameter on the fly.
+
+Adjusting the example from above we get:
+
+```{r}
+library(rhr)
+library(lubridate)
+data(datSH)
+
+dat2 <- split(datSH, round_date(ymd(datSH$day), "month"))
+bw <- lapply(dat2, function(x) rhrHpi(x[, 2:3]))
+hrs <- lapply(seq_along(bw), function(i) rhrKDE(dat2[[i]][, 2:3], h = bw[[i]]$h)) 
+```
+
+We could also do this on the fly with
 
 
-
-
+```{r}
+dat2 <- split(datSH, round_date(ymd(datSH$day), "month"))
+hrs <- lapply(dat2, function(x) rhrKDE(x[, 2:3], h = rhrHpi(x[, 2:3])$h)) 
+```
 
 
