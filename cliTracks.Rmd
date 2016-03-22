@@ -69,6 +69,7 @@ Sometimes it my be desirable to map a certain attribute on the path. In the next
 
 ```{r}
 trackSeg <- rhrSegments(track1, spatial = TRUE)
+head(trackSeg)
 
 library(scales)
 plot(trackSeg, lwd = rescale(trackSeg$distance, c(0.01, 4)), 
